@@ -1,0 +1,67 @@
+---
+# tasks file for ansible_role_secure-ssh
+- name: set admin group depending on OS
+  set_fact:
+    admin_group: "{{'wheel' if ansible_os_family in ['RedHat', 'Amazon'] else 'sudo'}}"
+
+
+- name: Create a secure user
+  user:
+    name: "{{username}}"
+    shell: /bin/bash
+    groups: "{{admin_group}}"
+    create_home: yes
+
+- name: Add SSH key for created user
+  authorized_key:
+    user: "{{username}}"
+    state: present
+    key: "{{ssh_public_key}}"
+
+- name: Harden SSH - disable root login
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin no'
+    state: present
+  notify: restart ssh
+
+- name: Install nginx
+  package:
+    name: nginx
+    state: present
+
+- name: Update apt cache on Debian/Ubuntu
+  apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Update yum cache on RedHat/CentOS/Amazon
+  yum:
+    update_cache: yes
+  when: ansible_os_family in ['Amazon', 'RedHat']
+
+- name: set web_root depending on OS
+  set_fact:
+    web_root: "{{'/var/www/html' if ansible_os_family == 'Debian' else '/usr/share/nginx/html'}}"
+
+- name: ensure web_root exists
+  file:
+    path: "{{web_root}}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+
+- name: Deploy custom index.html
+  template:
+    src: index.html.j2
+    dest: "{{web_root}}/index.html"
+    mode: '0644'
+
+- name: Ensure nginx is started and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: yes

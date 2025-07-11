@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome - Ansible Page</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+  }
+  .container {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 700px;
+    margin: auto;
+  }
+  h1 {
+    font-size: 3em;
+    margin-bottom: 0.2em;
+    color: #ffd700;
+    text-shadow: 2px 2px #000;
+  }
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    color: #00ffff;
+  }
+  p {
+    font-size: 1.2em;
+    color: #eee;
+  }
+  .info {
+    margin-top: 30px;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+  }
+  .info h3 {
+    color: #ffcc00;
+    text-align: center;
+  }
+  .info table {
+    width: 100%;
+    margin-top: 10px;
+    color: #fff;
+  }
+  .info table td {
+    padding: 5px;
+  }
+  footer {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #ccc;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Welcome from Vamshi Megavath!</h1>
+  <h2>This page is provisioned by <span style="color:#00ff00;">Ansible</span></h2>
+
+  <p>Hello <strong>ansible user</strong>, your deployment was successful!</p>
+
+  <div class="info">
+    <h3>System Information</h3>
+    <table>
+      <tr><td><strong>Hostname:</strong></td><td>{{ ansible_hostname }}</td></tr>
+      <tr><td><strong>IP Address:</strong></td><td>{{ ansible_default_ipv4.address }}</td></tr>
+      <tr><td><strong>Operating System:</strong></td><td>{{ ansible_distribution }} {{ ansible_distribution_version }}</td></tr>
+      <tr><td><strong>Architecture:</strong></td><td>{{ ansible_architecture }}</td></tr>
+      <tr><td><strong>CPU:</strong></td><td>{{ ansible_processor[1] }}
+

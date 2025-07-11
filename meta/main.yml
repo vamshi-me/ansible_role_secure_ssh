@@ -1,0 +1,47 @@
+---
+galaxy_info:
+  role_name: secure_ssh_user
+  author: Vamshi Megavath
+  description: >
+    An Ansible role to provision EC2 instances, configure secure SSH access,
+    harden SSH by disabling root login, install & configure Nginx with a custom web page,
+    and manage sensitive credentials with Ansible Vault. Supports Ubuntu, Amazon Linux & RedHat.
+
+  license: MIT
+  min_ansible_version: "2.6"
+
+  platforms:
+    - name: EL
+      versions:
+        - "7"
+        - "8"
+        - "9"
+    - name: RedHat
+      versions:
+        - "7"
+        - "8"
+        - "9"
+    - name: Amazon
+      versions:
+        - "2"
+    - name: Ubuntu
+      versions:
+        - "18.04"
+        - "20.04"
+        - "22.04"
+
+  galaxy_tags:
+    - ssh
+    - hardening
+    - nginx
+    - secure
+    - ansible
+    - aws
+    - ec2
+    - vault
+    - redhat
+    - ubuntu
+    - amazonlinux
+
+dependencies: []
+

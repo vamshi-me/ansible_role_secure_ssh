@@ -1,0 +1,3 @@
+---
+# defaults file for ansible_role_secure_ssh
+username: ansible_user
