@@ -1,38 +1,49 @@
-Role Name
-=========
+# Ansible Role: `secure_ssh_user`
 
-A brief description of the role goes here.
+An Ansible role to automate the configuration of secure SSH access on Linux servers.  
+It also hardens SSH, installs & configures Nginx with a custom web page, and supports multiple operating systems.
 
-Requirements
-------------
+---
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+##  Features
 
-Role Variables
---------------
+This role performs the following tasks:
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- Creates a secure non-root user.
+- Adds an SSH public key for the secure user.
+- Hardens SSH by disabling root login.
+- Installs and configures Nginx with a custom `index.html`.
+- Updates package cache (apt/yum) based on OS.
+- Sets and ensures the correct web root directory exists based on OS.
+- Starts & enables the Nginx service.
 
-Dependencies
-------------
+Supports:
+- Ubuntu (18.04, 20.04, 22.04)
+- Amazon Linux 2
+- RedHat / EL (7, 8, 9)
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+---
 
-Example Playbook
-----------------
+## Pre-Requirements
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+- Ansible ≥ 2.6
+- A running Linux host (Ubuntu, Amazon Linux, or RHEL/EL) reachable via SSH.
+- A vault file (if you want to store sensitive variables securely).
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+---
 
-License
--------
+## 🚀 Role Variables
 
-BSD
+These variables must be defined (you can use Vault to encrypt them):
 
-Author Information
-------------------
+| Variable            | Description                     | Example |
+|---------------------|---------------------------------|---------|
+| `ssh_public_key`    | SSH public key for the secure user | `ssh-rsa AAAAB3N...` |
+| `secure_user`       | Username for the secure user    | `deployer` |
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+You can store these securely in `group_vars/all/vault.yml` and encrypt it with Ansible Vault.
+
+Example `group_vars/all/vault.yml`:
+```yaml
+ssh_public_key: YOUR_SSH_PUBLIC_KEY
+secure_user: deployer
