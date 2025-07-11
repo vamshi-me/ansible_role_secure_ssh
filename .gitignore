@@ -1,0 +1,7 @@
+*.retry
+*.log
+*.swp
+*.pyc
+__pycache__/
+.vscode/
+.idea/
