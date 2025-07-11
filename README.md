@@ -37,7 +37,7 @@ ansible_role_secure_ssh/
 
 ---
 
-## 🚀 Role Variables
+## Role Variables
 
 These variables can be defined:
 
@@ -51,7 +51,7 @@ You **must provide `ssh_public_key`**, and it is recommended to keep it encrypte
 
 ---
 
-## 🔐 Pre-requisite: Create the Vault file
+## Pre-requisite: Create the Vault file
 
 This project uses Ansible Vault to securely store the sensitive `ssh_public_key`.
 
@@ -81,45 +81,28 @@ ansible-playbook -i inventory configure.yml --vault-password-file vault.pass
 
 ---
 
-## 🔧 Tasks Performed by the Role
+##  Tasks Performed by the Role
 
-✅ Create a secure user
-✅ Add SSH key for the user
-✅ Harden SSH: disable root login
-✅ Install Nginx
-✅ Update package cache (apt/yum) depending on OS
-✅ Set web root path depending on OS
-✅ Ensure web root directory exists
-✅ Deploy custom `index.html`
-✅ Ensure Nginx is started and enabled
+* Create a secure user
+* Add SSH key for the user
+* Harden SSH: disable root login
+* Install Nginx
+* Update package cache (apt/yum) depending on OS
+* Set web root path depending on OS
+* Ensure web root directory exists
+* Deploy custom `index.html`
+* Ensure Nginx is started and enabled
+
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 📄 .gitignore
-
-This repo includes a `.gitignore` that ignores:
-
-```
-*.retry
-*.log
-*.swp
-*.pyc
-__pycache__/
-.vscode/
-.idea/
-vault.pass
-group_vars/all/vault.yml
-```
-
----
-
-## 📑 Example Playbook
+##  Example Playbook
 
 ```yaml
 - name: Configure Secure SSH & Nginx
@@ -133,7 +116,7 @@ group_vars/all/vault.yml
 
 ---
 
-## 🌐 Supported Platforms
+##  Supported Platforms
 
 * Ubuntu: 18.04, 20.04, 22.04
 * Amazon Linux: 2
@@ -141,16 +124,8 @@ group_vars/all/vault.yml
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions and improvements are welcome. Please open an issue or PR!
 
----
 
-## 📬 Author
-
-**Vamshi Megavath**
-
-[GitHub Profile](https://github.com/vamshi-me)
-
----
