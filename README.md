@@ -39,9 +39,8 @@ These variables must be defined (you can use Vault to encrypt them):
 | Variable            | Description                     | Example |
 |---------------------|---------------------------------|---------|
 | `ssh_public_key`    | SSH public key for the secure user | `ssh-rsa AAAAB3N...` |
-| `secure_user`       | Username for the secure user    | `deployer` |
 
-You can store these securely in `group_vars/all/vault.yml` and encrypt it with Ansible Vault.
+You can store this securely in `group_vars/all/vault.yml` and encrypt it with Ansible Vault.
 
 Example `group_vars/all/vault.yml`:
 ```yaml
